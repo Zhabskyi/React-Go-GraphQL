@@ -2,7 +2,7 @@
   "name": "infrastructure",
   "version": "0.1.0",
   "bin": {
-    "infrastructure": "./lib/infrastructure.ts"
+    "infrastructure": "./bin/infrastructure.ts"
   },
   "scripts": {
     "clean": "rimraf bin && rimraf cdk.out",
