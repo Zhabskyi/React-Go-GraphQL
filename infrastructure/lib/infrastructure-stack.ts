@@ -9,7 +9,7 @@ export class InfrastructureStack extends cdk.Stack {
 
     // Add S3 Bucket
     const s3Site = new s3.Bucket(this, `<MyReactApp>`, {
-      bucketName: `react-golang-graphQL`,
+      bucketName: `react-golang-graphql`,
       publicReadAccess: true,
       websiteIndexDocument: "index.html",
       websiteErrorDocument: "index.html"
