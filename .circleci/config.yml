@@ -12,7 +12,7 @@ commands:
   install-dependencies:
     steps:
       - run: npm install .
-      - run: cd infrastructure && npm install .
+      - run: cd ./infrastructure && npm install .
   cache-dependencies:
     steps:
       - save_cache:
@@ -29,7 +29,7 @@ commands:
       - run: npm run build
   deploy-app:
     steps:
-      - run: cd infrastructure && npm run deploy
+      - run: cd ./infrastructure && npm run deploy
 
 jobs:
   build:
