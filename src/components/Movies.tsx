@@ -5,30 +5,51 @@ export interface Movie {
   id: number;
   title: string;
   runtime: number;
+  description: string;
+  mpaaRating: string;
+  rating: number;
+  releaseDate: string;
+  year: number;
+  genres?: Array<string>;
 }
 
 const Movies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    setMovies([
-      { id: 1, title: "The Shawshank Redemption", runtime: 142 },
-      { id: 2, title: "The Godfather", runtime: 175 },
-      { id: 3, title: "The Dark Knight", runtime: 150 }
-    ]);
+    getAllMovies();
   }, []);
+
+  const getAllMovies = () => {
+    fetch("http://localhost:8080/v1/movies")
+      .then((res) => res.json())
+      .then((json) => {
+        setMovies([...json.movies]);
+        setIsLoaded(true);
+      })
+      .catch((err) => {
+        setIsLoaded(true);
+        setError(true);
+      });
+  };
 
   return (
     <>
       <h2>Choose a movie</h2>
-
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
+      {error && <div>Something went wrong...</div>}
+      {!isLoaded ? (
+        <p>Loading...</p>
+      ) : (
+        <ul>
+          {movies.map((movie) => (
+            <li key={movie.id}>
+              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };
