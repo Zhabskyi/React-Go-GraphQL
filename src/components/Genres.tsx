@@ -7,6 +7,7 @@ const Genres = (props: Props) => {
   const [genres, setGenres] = useState<any>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  console.log(isLoaded, error);
 
   useEffect(() => {
     fetch("http://localhost:8080/v1/genres")
