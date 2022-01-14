@@ -1,0 +1,1 @@
+export { getGenreNameFromUrl } from "./queryHelpers";
