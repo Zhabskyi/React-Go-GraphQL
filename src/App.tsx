@@ -7,7 +7,7 @@ import OneMovie from "./components/OneMovie";
 import Genres from "./components/Genres";
 import OneGenre from "./components/OneGenre";
 import EditMovie from "./components/EditMovie";
-import usePrevious from "./utilities/usePrevious";
+import { usePrevious } from "./utilities/usePrevious";
 
 export default function App() {
   const [item, setItem] = useState<null | string>(null);
