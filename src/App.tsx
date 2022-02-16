@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Movies from "./components/Movies";
 import Admin from "./components/Admin";
@@ -6,8 +6,13 @@ import Home from "./components/Home";
 import OneMovie from "./components/OneMovie";
 import Genres from "./components/Genres";
 import OneGenre from "./components/OneGenre";
+import EditMovie from "./components/EditMovie";
+import usePrevious from "./utilities/usePrevious";
 
 export default function App() {
+  const [item, setItem] = useState<null | string>(null);
+  usePrevious(item);
+
   return (
     <Router>
       <div className="container">
@@ -20,14 +25,17 @@ export default function App() {
           <div className="col-md-3">
             <nav>
               <ul className="list-group">
-                <li className="list-group-item">
+                <li className="list-group-item" onClick={() => setItem("Home")}>
                   <Link to="/">Home</Link>
                 </li>
-                <li className="list-group-item">
+                <li className="list-group-item" onClick={() => setItem("Movies")}>
                   <Link to="/movies">Movies</Link>
                 </li>
-                <li className="list-group-item">
+                <li className="list-group-item" onClick={() => setItem("Genres")}>
                   <Link to="/genres">Genres</Link>
+                </li>
+                <li className="list-group-item" onClick={() => setItem(null)}>
+                  <Link to="/admin/add">Add movie</Link>
                 </li>
                 <li className="list-group-item">
                   <Link to="/admin">Manage Catalogue</Link>
@@ -47,6 +55,7 @@ export default function App() {
               <Route exact path="/genres">
                 <Genres />
               </Route>
+              <Route path="/admin/add" component={EditMovie} />
               <Route path="/admin">
                 <Admin />
               </Route>
