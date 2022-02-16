@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Movie } from "./Movies";
 
 const EditMovie = () => {
-  const [movie, setMovie] = useState<Movie | undefined>(undefined);
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [movie] = useState<Movie | undefined>(undefined);
+  // const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  // const [error, setError] = useState<boolean>(false);
   return (
     <>
       <h2>Add/Edit Movie</h2>
