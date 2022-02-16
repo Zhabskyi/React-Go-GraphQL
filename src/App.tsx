@@ -11,7 +11,16 @@ import { usePrevious } from "./utilities/usePrevious";
 
 export default function App() {
   const [item, setItem] = useState<null | string>(null);
+  usePrevious();
   usePrevious(item);
+  if (item === "Home") {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    usePrevious(item);
+  }
+  if (item === null) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    usePrevious(item);
+  }
 
   return (
     <Router>
